@@ -3,9 +3,13 @@ const minutes = document.getElementById("m");
 const seconds = document.getElementById("s");
 const c_seconds = document.getElementById("cs");
 const startable =  document.getElementById("start");
+const stopable =  document.getElementById("stop");
+const resetable =  document.getElementById("reset");
 
 let count = true;
 startable.disabled = false;
+stopable.disabled = true;
+resetable.disabled = true;
 
 let time =0;
 let hour = 0;
@@ -30,12 +34,16 @@ function countTime() {
 
 function start() {
     startable.disabled = true;
+    stopable.disabled = false;
+    resetable.disabled = true;
     timer = setInterval(countTime, 100);
 }
 
 function stop() {
     clearInterval(timer);
     startable.disabled = false;
+    stopable.disabled = true;
+    resetable.disabled = false;
 }
 
 function reset() {
@@ -44,4 +52,6 @@ function reset() {
     seconds.innerHTML=0;
     c_seconds.innerHTML=0;
     time = 0;
+    startable.disabled = false;
+    resetable.disabled = true;
 }
